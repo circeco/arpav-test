@@ -35,22 +35,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.18.3/extensions/export/bootstrap-table-export.min.js"></script>
 
     <style>
-        .container {
-            width: 95%;
-        }
+        .container { width: 95%; }
     </style>
 </head>
 
 <body>
     <h1 style="text-align: center; padding: 20px;">ARPAV test site</h1>
     <div class="container">
-		<div id="toolbar">
-            <select class="form-control">
-                <option value="">Export Basic</option>
-                <option value="all">Export All</option>
-                <option value="selected">Export Selected</option>
-            </select>
-        </div>
 
         <table id="table" 
 			data-toggle="table" 
@@ -58,7 +49,7 @@
 			data-filter-control="true" 
 			data-show-export="true"
             data-click-to-select="true" 
-			data-toolbar="#toolbar">
+			data-export-data-type="selected">
 
 			<thead>
 				<tr>
@@ -131,7 +122,7 @@
 					<td>300013134PRA</td>
 					<td>PRESS</td>
 					<td>Pressione atmosferica</td>
-					<td class="bs-checkbox "><input data-index="0" name="btSelectItem" type="checkbox"></td>
+					<td class="bs-checkbox "><input data-index="1" name="btSelectItem" type="checkbox"></td>
 				</tr>
 				<tr>
 					<td>VEVN0000664</td>
@@ -154,7 +145,7 @@
 					<td>300013139PRA</td>
 					<td>PRESS</td>
 					<td>Pressione atmosferica</td>
-					<td class="bs-checkbox "><input data-index="0" name="btSelectItem" type="checkbox"></td>
+					<td class="bs-checkbox "><input data-index="2" name="btSelectItem" type="checkbox"></td>
 				</tr>
 				<tr>
 					<td>VEAO0000101</td>
@@ -177,7 +168,7 @@
 					<td>300015849TPR</td>
 					<td>PREC</td>
 					<td>Precipitazione</td>
-					<td class="bs-checkbox "><input data-index="0" name="btSelectItem" type="checkbox"></td>
+					<td class="bs-checkbox "><input data-index="3" name="btSelectItem" type="checkbox"></td>
 				</tr>
 				<tr>
 					<td>VEAO0000101</td>
@@ -200,7 +191,7 @@
 					<td>300015849TPR</td>
 					<td>PREC</td>
 					<td>Precipitazione</td>
-					<td class="bs-checkbox "><input data-index="0" name="btSelectItem" type="checkbox"></td>
+					<td class="bs-checkbox "><input data-index="4" name="btSelectItem" type="checkbox"></td>
 				</tr>
 				<tr>
 					<td>VEAO0000111</td>
@@ -223,7 +214,7 @@
 					<td>300015851TPR</td>
 					<td>PREC</td>
 					<td>Precipitazione</td>
-					<td class="bs-checkbox "><input data-index="0" name="btSelectItem" type="checkbox"></td>
+					<td class="bs-checkbox "><input data-index="5" name="btSelectItem" type="checkbox"></td>
 				</tr>
 				<tr>
 					<td>VEAO0000111</td>
@@ -246,7 +237,7 @@
 					<td>300015851TPR</td>
 					<td>PREC</td>
 					<td>Precipitazione</td>
-					<td class="bs-checkbox "><input data-index="0" name="btSelectItem" type="checkbox"></td>
+					<td class="bs-checkbox "><input data-index="6" name="btSelectItem" type="checkbox"></td>
 				</tr>
 				<tr>
 					<td>VEAO0000112</td>
@@ -269,7 +260,7 @@
 					<td>300015853TPR</td>
 					<td>PREC</td>
 					<td>Precipitazione</td>
-					<td class="bs-checkbox "><input data-index="0" name="btSelectItem" type="checkbox"></td>
+					<td class="bs-checkbox "><input data-index="7" name="btSelectItem" type="checkbox"></td>
 				</tr>
 				<tr>
 					<td>VEAO0000112</td>
@@ -292,7 +283,7 @@
 					<td>300015853TPR</td>
 					<td>PREC</td>
 					<td>Precipitazione</td>
-					<td class="bs-checkbox "><input data-index="0" name="btSelectItem" type="checkbox"></td>
+					<td class="bs-checkbox "><input data-index="8" name="btSelectItem" type="checkbox"></td>
 				</tr>
 				<tr>
 					<td>VEAO0000114</td>
@@ -315,7 +306,7 @@
 					<td>300015855TPR</td>
 					<td>PREC</td>
 					<td>Precipitazione</td>
-					<td class="bs-checkbox "><input data-index="0" name="btSelectItem" type="checkbox"></td>
+					<td class="bs-checkbox "><input data-index="9" name="btSelectItem" type="checkbox"></td>
 				</tr>
 				<tr>
 					<td>VEAO0000114</td>
@@ -338,7 +329,7 @@
 					<td>300015855TPR</td>
 					<td>PREC</td>
 					<td>Precipitazione</td>
-					<td class="bs-checkbox "><input data-index="0" name="btSelectItem" type="checkbox"></td>
+					<td class="bs-checkbox "><input data-index="10" name="btSelectItem" type="checkbox"></td>
 				</tr>
 				<tr>
 					<td>VEAO0000115</td>
@@ -361,7 +352,7 @@
 					<td>300015857TPR</td>
 					<td>PREC</td>
 					<td>Precipitazione</td>
-					<td class="bs-checkbox "><input data-index="0" name="btSelectItem" type="checkbox"></td>
+					<td class="bs-checkbox "><input data-index="11" name="btSelectItem" type="checkbox"></td>
 				</tr>
 				<tr>
 					<td>VEAO0000115</td>
@@ -384,7 +375,7 @@
 					<td>300015857TPR</td>
 					<td>PREC</td>
 					<td>Precipitazione</td>
-					<td class="bs-checkbox "><input data-index="0" name="btSelectItem" type="checkbox"></td>
+					<td class="bs-checkbox "><input data-index="12" name="btSelectItem" type="checkbox"></td>
 				</tr>
 				<tr>
 					<td>VEAO0000116</td>
@@ -407,7 +398,7 @@
 					<td>300015859TPR</td>
 					<td>PREC</td>
 					<td>Precipitazione</td>
-					<td class="bs-checkbox "><input data-index="0" name="btSelectItem" type="checkbox"></td>
+					<td class="bs-checkbox "><input data-index="13" name="btSelectItem" type="checkbox"></td>
 				</tr>
 				<tr>
 					<td>VEAO0000116</td>
@@ -430,7 +421,7 @@
 					<td>300015859TPR</td>
 					<td>PREC</td>
 					<td>Precipitazione</td>
-					<td class="bs-checkbox "><input data-index="0" name="btSelectItem" type="checkbox"></td>
+					<td class="bs-checkbox "><input data-index="14" name="btSelectItem" type="checkbox"></td>
 				</tr>
 
 			</tbody>
@@ -438,29 +429,21 @@
     </div>
 
     <script>
-        $(document).ready(function () {
-            var $table = $('#table');
+        // $(document).ready(function () {
+        //     var $table = $('#table');
 
-            // Initialize the Bootstrap Table with export options
-            $table.bootstrapTable({
-                exportDataType: 'all', // Set the default export type
-                columns: [
-                    // Define your table columns here
-                ]
-            });
+        //     // Initialize the Bootstrap Table with export options
+        //     $table.bootstrapTable({
+        //         exportDataType: 'selected', // Set the default export type
+        //     });
 
-            // Handle export options
-            $('#toolbar').find('select').change(function () {
-                $table.bootstrapTable('refreshOptions', {
-                    exportDataType: $(this).val()
-                });
-            });
-
-            // Toggle class on row click
-            $table.on("click", "tr", function () {
-                $(this).toggleClass("bold-blue");
-            });
-        });
+        //     // Handle export options
+        //     // $('#toolbar').find('select').change(function () {
+        //     //     $table.bootstrapTable('refreshOptions', {
+        //     //         exportDataType: $(this).val()
+        //     //     });
+        //     // });
+        // });
     </script>
 </body>
 
