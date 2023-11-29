@@ -12,44 +12,43 @@
     <title>ARPAV test</title>
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <!-- Bootstrap Table CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.18.3/bootstrap-table.min.css" rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap-table@1.18.3/dist/extensions/filter-control/bootstrap-table-filter-control.css" rel="stylesheet">
 
-    <!-- Bootstrap JS and Popper.js -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <!-- Popper.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
     <!-- jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <!-- Bootstrap Table Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.18.3/bootstrap-table.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.18.3/dist/extensions/filter-control/bootstrap-table-filter-control.js"></script>
 
     <!-- Bootstrap Table Export and dependencies -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsPDF/1.5.3/jspdf.debug.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
     <script src="https://rawgit.com/hhurz/tableExport.jquery.plugin/master/tableExport.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.18.3/extensions/export/bootstrap-table-export.min.js"></script>
-
-    <style>
-        .container { width: 95%; }
-    </style>
 </head>
 
 <body>
     <h1 style="text-align: center; padding: 20px;">ARPAV test site</h1>
-    <div class="container">
+    <div class="container" style="width: 95%;">
 
-        <table id="table" 
-			data-toggle="table" 
-			data-search="true" 
-			data-filter-control="true" 
-			data-show-export="true"
+        <table id="table"
+            data-toggle="table" 
+            data-search="true" 
+            data-filter-control="true"
+            data-show-export="true"
             data-click-to-select="true" 
-			data-export-data-type="selected">
+            data-export-data-type="selected">
 
 			<thead>
 				<tr>
@@ -62,17 +61,17 @@
 					<th data-field="Quota" data-filter-control="input" data-sortable="true">Quota</th>
 					<th data-field="Comune" data-filter-control="select" data-sortable="true">Comune</th>
 					<th data-field="Provincia" data-filter-control="select" data-sortable="true">Provincia</th>
-					<th data-field="Epsg3003_X" data-filter-control="select" data-sortable="true">Epsg3003_X</th>
-					<th data-field="Epsg3003_Y" data-filter-control="select" data-sortable="true">Epsg3003_Y</th>
-					<th data-field="Epsg4258_Lat" data-filter-control="select" data-sortable="true">Epsg4258_Lat</th>
-					<th data-field="Epsg4258_Lon" data-filter-control="select" data-sortable="true">Epsg4258_Lon</th>
+					<th data-field="Epsg3003_X" data-filter-control="input" data-sortable="true">Epsg3003_X</th>
+					<th data-field="Epsg3003_Y" data-filter-control="input" data-sortable="true">Epsg3003_Y</th>
+					<th data-field="Epsg4258_Lat" data-filter-control="input" data-sortable="true">Epsg4258_Lat</th>
+					<th data-field="Epsg4258_Lon" data-filter-control="input" data-sortable="true">Epsg4258_Lon</th>
 					<th data-field="acronimo" data-filter-control="select" data-sortable="true">Acronimo</th>
 					<th data-field="codice_stazione" data-filter-control="select" data-sortable="true">Codice stazione</th>
 					<th data-field="nome_stazione" data-filter-control="select" data-sortable="true">Nome stazione</th>
 					<th data-field="nome_sensore" data-filter-control="select" data-sortable="true">Nome sensore</th>
 					<th data-field="codice_sensore" data-filter-control="select" data-sortable="true">Codice sensore</th>
 					<th data-field="type" data-filter-control="select" data-sortable="true">type</th>
-					<th data-field="descr" data-filter-control="select" data-sortable="true">descr</td>
+					<th data-field="descr" data-filter-control="select" data-sortable="true">descr</th>
 					<th data-field="state" data-checkbox="true"></th>
 				</tr>
 			</thead>
@@ -428,22 +427,15 @@
         </table>
     </div>
 
-    <script>
-        // $(document).ready(function () {
-        //     var $table = $('#table');
+	<script>
+        $(document).ready(function () {
+            var $table = $('#table');
 
-        //     // Initialize the Bootstrap Table with export options
-        //     $table.bootstrapTable({
-        //         exportDataType: 'selected', // Set the default export type
-        //     });
+            // Initialize the Bootstrap Table
+            $table.bootstrapTable();
 
-        //     // Handle export options
-        //     // $('#toolbar').find('select').change(function () {
-        //     //     $table.bootstrapTable('refreshOptions', {
-        //     //         exportDataType: $(this).val()
-        //     //     });
-        //     // });
-        // });
+            // You can add more customization or handle events here if needed
+        });
     </script>
 </body>
 
