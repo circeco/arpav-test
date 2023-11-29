@@ -10,100 +10,439 @@
 	<meta name="author" content="ICS Piero Grilli">
 	
     <title>ARPAV test</title>
-    
+
+	<!-- Bootstrap CSS -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+	<!-- Bootstrap Table CSS -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.18.3/bootstrap-table.min.css" rel="stylesheet">
+
+	<!-- Bootstrap JS and Popper.js -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
+	<!-- jQuery -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+	<!-- Bootstrap Table and Export Extension Scripts -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.18.3/bootstrap-table.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.18.3/extensions/export/bootstrap-table-export.min.js"></script>
+
+
+	<script>
+		var $table = $('#table');
+		$(function () {
+			$('#toolbar').find('select').change(function () {
+				$table.bootstrapTable('refreshOptions', {
+					exportDataType: $(this).val()
+				});
+			});
+		})
+	
+		var trBoldBlue = $("table");
+	
+		$(trBoldBlue).on("click", "tr", function () {
+			$(this).toggleClass("bold-blue");
+		});
+	</script>
+
 	<style>
-		.accordion-button::after { margin-left: 10px; }
-		.badge { margin-left: auto;}
-		.accordion-body p { margin-left: 40px;}
-		.accordion-body p span {margin-left: 20px;}
+		.container { width: 95%; }
 	</style>
 </head>
 
 <body>
-    <h1 style="text-align: center; padding: 5%;">ARPAV test site</h1>
-
-	<div class="accordion accordion-flush" id="accordionFlushExample" style="max-width: 90%; width: 600px; margin: auto;">
-		<div class="accordion-item">
-			<h2 class="accordion-header" id="flush-headingOne">
-				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-					data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-					Region 1 &nbsp;
-				<span class="badge bg-danger">Action Required</span>
-				</button>
-			</h2>
-			<div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
-				data-bs-parent="#accordionFlushExample">
-				<div class="accordion-body">
-					<p>
-						Bacino X
-						<span class="badge bg-warning">4</span>
-					</p>
-					<p>
-						Bacino Y
-						<span class="badge bg-danger">11</span>
-					</p>
-					<p>
-						Bacino Z
-						<span class="badge bg-success">7</span>
-					</p>
-				</div>
-			</div>
+    <h1 style="text-align: center; padding: 20px;">ARPAV test site</h1>
+	<div class="container">	
+		<div id="toolbar">
+			<select class="form-control">
+				<option value="">Export Basic</option>
+				<option value="all">Export All</option>
+				<option value="selected">Export Selected</option>
+			</select>
 		</div>
-		<div class="accordion-item">
-			<h2 class="accordion-header" id="flush-headingTwo">
-				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-					data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-					Region 2 &nbsp;
-					<span class="badge bg-warning text-dark">Warning</span>
-				</button>
-			</h2>
-			<div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo"
-				data-bs-parent="#accordionFlushExample">
-				<div class="accordion-body">
-					<p>
-						Bacino X 
-						<span class="badge bg-warning">4</span>
-					</p>
-					<p>
-						Bacino Y
-						<span class="badge bg-success">7</span>
-					</p>
-					<p>
-						Bacino Z
-						<span class="badge bg-success">7</span>
-					</p>
-				</div>
-			</div>
-		</div>
-		<div class="accordion-item">
-			<h2 class="accordion-header" id="flush-headingThree">
-				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-					data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-					Region 3 &nbsp;
-				<span class="badge bg-success">Good</span>
-				</button>
-			</h2>
-			<div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree"
-				data-bs-parent="#accordionFlushExample">
-				<div class="accordion-body">
-					<p>
-						Bacino X
-						<span class="badge bg-success">7</span>
-					</p>
-					<p>
-						Bacino Y
-						<span class="badge bg-success">7</span>
-					</p>
-					<p>
-						Bacino Z
-						<span class="badge bg-success">7</span>
-					</p>
-				</div>
-			</div>
-		</div>
-	</div>
 	
+		<table id="table" 
+			data-toggle="table" 
+			data-search="true" 
+			data-filter-control="true" 
+			data-show-export="true"
+			data-click-to-select="true" 
+			data-toolbar="#toolbar">
+
+			<thead>
+				<tr>
+					<th data-field="codice" data-filter-control="input" data-sortable="true">Codice</th>
+					<th data-field="Codice_SIRAV" data-filter-control="select" data-sortable="true">Codice SIRAV</th>
+					<th data-field="statid" data-filter-control="select" data-sortable="true">statid</th>
+					<th data-field="Nome" data-filter-control="select" data-sortable="true">Nome</th>
+					<th data-field="Inizio" data-filter-control="select" data-sortable="true">Inizio</th>
+					<th data-field="Fine" data-filter-control="select" data-sortable="true">Fine</th>
+					<th data-field="Quota" data-filter-control="input" data-sortable="true">Quota</th>
+					<th data-field="Comune" data-filter-control="select" data-sortable="true">Comune</th>
+					<th data-field="Provincia" data-filter-control="select" data-sortable="true">Provincia</th>
+					<th data-field="Epsg3003_X" data-filter-control="select" data-sortable="true">Epsg3003_X</th>
+					<th data-field="Epsg3003_Y" data-filter-control="select" data-sortable="true">Epsg3003_Y</th>
+					<th data-field="Epsg4258_Lat" data-filter-control="select" data-sortable="true">Epsg4258_Lat</th>
+					<th data-field="Epsg4258_Lon" data-filter-control="select" data-sortable="true">Epsg4258_Lon</th>
+					<th data-field="acronimo" data-filter-control="select" data-sortable="true">Acronimo</th>
+					<th data-field="codice_stazione" data-filter-control="select" data-sortable="true">Codice stazione</th>
+					<th data-field="nome_stazione" data-filter-control="select" data-sortable="true">Nome stazione</th>
+					<th data-field="nome_sensore" data-filter-control="select" data-sortable="true">Nome sensore</th>
+					<th data-field="codice_sensore" data-filter-control="select" data-sortable="true">Codice sensore</th>
+					<th data-field="type" data-filter-control="select" data-sortable="true">type</th>
+					<th data-field="descr" data-filter-control="select" data-sortable="true">descr</td>
+					<th data-field="state" data-checkbox="true"></th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr>
+					<td>VEVN0000068</td>
+					<td>68</td>
+					<td>Meteo_idro_CVN_68</td>
+					<td>Arsenale CVN</td>
+					<td>2019-06-01</td>
+					<td>N/A</td>
+					<td>N/A</td>
+					<td>VENEZIA (VE)</td>
+					<td>VE</td>
+					<td>1762299.316</td>
+					<td>5036992.561</td>
+					<td>N/A</td>
+					<td>N/A</td>
+					<td>VN</td>
+					<td>68</td>
+					<td>Arsenale CVN</td>
+					<td>Pressione atmosferica</td>
+					<td>300013124PRA</td>
+					<td>PRESS</td>
+					<td>Pressione atmosferica</td>
+					<td class="bs-checkbox "><input data-index="0" name="btSelectItem" type="checkbox"></td>
+				</tr>
+				<tr>
+					<td>VEVN0000662</td>
+					<td>662</td>
+					<td>Meteo_idro_CVN_662</td>
+					<td>Chioggia laguna CVN</td>
+					<td>2019-06-01</td>
+					<td>N/A</td>
+					<td>N/A</td>
+					<td>VENEZIA (VE)</td>
+					<td>VE</td>
+					<td>1757565.882</td>
+					<td>5014042.024</td>
+					<td>N/A</td>
+					<td>N/A</td>
+					<td>VN</td>
+					<td>662</td>
+					<td>Chioggia laguna CVN</td>
+					<td>Pressione atmosferica</td>
+					<td>300013134PRA</td>
+					<td>PRESS</td>
+					<td>Pressione atmosferica</td>
+					<td class="bs-checkbox "><input data-index="0" name="btSelectItem" type="checkbox"></td>
+				</tr>
+				<tr>
+					<td>VEVN0000664</td>
+					<td>664</td>
+					<td>Meteo_idro_CVN_664</td>
+					<td>Malamocco laguna CVN</td>
+					<td>2019-06-01</td>
+					<td>N/A</td>
+					<td>N/A</td>
+					<td>VENEZIA (VE)</td>
+					<td>VE</td>
+					<td>1758540.095</td>
+					<td>5025899.43</td>
+					<td>N/A</td>
+					<td>N/A</td>
+					<td>VN</td>
+					<td>664</td>
+					<td>Malamocco laguna CVN</td>
+					<td>Pressione atmosferica</td>
+					<td>300013139PRA</td>
+					<td>PRESS</td>
+					<td>Pressione atmosferica</td>
+					<td class="bs-checkbox "><input data-index="0" name="btSelectItem" type="checkbox"></td>
+				</tr>
+				<tr>
+					<td>VEAO0000101</td>
+					<td>101</td>
+					<td>Meteo_idro_DAO_101</td>
+					<td>DAO - Arsie&#39;</td>
+					<td>2023-01-01</td>
+					<td>N/A</td>
+					<td>1428.0</td>
+					<td>ARSIE&#39; (BL)</td>
+					<td>BL</td>
+					<td>1707951.934</td>
+					<td>5098395.483</td>
+					<td>45.976554</td>
+					<td>11.75609</td>
+					<td>AO</td>
+					<td>101</td>
+					<td>DAO - Arsie&#39;</td>
+					<td>Precipitazione</td>
+					<td>300015849TPR</td>
+					<td>PREC</td>
+					<td>Precipitazione</td>
+					<td class="bs-checkbox "><input data-index="0" name="btSelectItem" type="checkbox"></td>
+				</tr>
+				<tr>
+					<td>VEAO0000101</td>
+					<td>101</td>
+					<td>Meteo_idro_DAO_101</td>
+					<td>DAO - Arsie&#39;</td>
+					<td>2023-01-01</td>
+					<td>N/A</td>
+					<td>1428.0</td>
+					<td>ARSIE&#39; (BL)</td>
+					<td>BL</td>
+					<td>1707951.934</td>
+					<td>5098395.483</td>
+					<td>45.976554</td>
+					<td>11.75609</td>
+					<td>AO</td>
+					<td>101</td>
+					<td>DAO - Arsie&#39;</td>
+					<td>Precipitazione</td>
+					<td>300015849TPR</td>
+					<td>PREC</td>
+					<td>Precipitazione</td>
+					<td class="bs-checkbox "><input data-index="0" name="btSelectItem" type="checkbox"></td>
+				</tr>
+				<tr>
+					<td>VEAO0000111</td>
+					<td>111</td>
+					<td>Meteo_idro_DAO_111</td>
+					<td>DAO - Foza</td>
+					<td>2023-01-01</td>
+					<td>N/A</td>
+					<td>1183.0</td>
+					<td>FOZA (VI)</td>
+					<td>VI</td>
+					<td>1706130.21</td>
+					<td>5084713.09</td>
+					<td>45.884924</td>
+					<td>11.656186</td>
+					<td>AO</td>
+					<td>111</td>
+					<td>DAO - Foza</td>
+					<td>Precipitazione</td>
+					<td>300015851TPR</td>
+					<td>PREC</td>
+					<td>Precipitazione</td>
+					<td class="bs-checkbox "><input data-index="0" name="btSelectItem" type="checkbox"></td>
+				</tr>
+				<tr>
+					<td>VEAO0000111</td>
+					<td>111</td>
+					<td>Meteo_idro_DAO_111</td>
+					<td>DAO - Foza</td>
+					<td>2023-01-01</td>
+					<td>N/A</td>
+					<td>1183.0</td>
+					<td>FOZA (VI)</td>
+					<td>VI</td>
+					<td>1706130.21</td>
+					<td>5084713.09</td>
+					<td>45.884924</td>
+					<td>11.656186</td>
+					<td>AO</td>
+					<td>111</td>
+					<td>DAO - Foza</td>
+					<td>Precipitazione</td>
+					<td>300015851TPR</td>
+					<td>PREC</td>
+					<td>Precipitazione</td>
+					<td class="bs-checkbox "><input data-index="0" name="btSelectItem" type="checkbox"></td>
+				</tr>
+				<tr>
+					<td>VEAO0000112</td>
+					<td>112</td>
+					<td>Meteo_idro_DAO_112</td>
+					<td>DAO - Gallio Campomulo</td>
+					<td>2023-01-01</td>
+					<td>N/A</td>
+					<td>1533.0</td>
+					<td>GALLIO (VI)</td>
+					<td>VI</td>
+					<td>1697864.61</td>
+					<td>5090661.42</td>
+					<td>45.940833</td>
+					<td>11.552222</td>
+					<td>AO</td>
+					<td>112</td>
+					<td>DAO - Gallio Campomulo</td>
+					<td>Precipitazione</td>
+					<td>300015853TPR</td>
+					<td>PREC</td>
+					<td>Precipitazione</td>
+					<td class="bs-checkbox "><input data-index="0" name="btSelectItem" type="checkbox"></td>
+				</tr>
+				<tr>
+					<td>VEAO0000112</td>
+					<td>112</td>
+					<td>Meteo_idro_DAO_112</td>
+					<td>DAO - Gallio Campomulo</td>
+					<td>2023-01-01</td>
+					<td>N/A</td>
+					<td>1533.0</td>
+					<td>GALLIO (VI)</td>
+					<td>VI</td>
+					<td>1697864.61</td>
+					<td>5090661.42</td>
+					<td>45.940833</td>
+					<td>11.552222</td>
+					<td>AO</td>
+					<td>112</td>
+					<td>DAO - Gallio Campomulo</td>
+					<td>Precipitazione</td>
+					<td>300015853TPR</td>
+					<td>PREC</td>
+					<td>Precipitazione</td>
+					<td class="bs-checkbox "><input data-index="0" name="btSelectItem" type="checkbox"></td>
+				</tr>
+				<tr>
+					<td>VEAO0000114</td>
+					<td>114</td>
+					<td>Meteo_idro_DAO_114</td>
+					<td>DAO - Malga Porta Manazzo</td>
+					<td>2023-01-01</td>
+					<td>N/A</td>
+					<td>1739.0</td>
+					<td>ASIAGO (VI)</td>
+					<td>VI</td>
+					<td>1685602.87</td>
+					<td>5094203.99</td>
+					<td>45.976111</td>
+					<td>11.395555</td>
+					<td>AO</td>
+					<td>114</td>
+					<td>DAO - Malga Porta Manazzo</td>
+					<td>Precipitazione</td>
+					<td>300015855TPR</td>
+					<td>PREC</td>
+					<td>Precipitazione</td>
+					<td class="bs-checkbox "><input data-index="0" name="btSelectItem" type="checkbox"></td>
+				</tr>
+				<tr>
+					<td>VEAO0000114</td>
+					<td>114</td>
+					<td>Meteo_idro_DAO_114</td>
+					<td>DAO - Malga Porta Manazzo</td>
+					<td>2023-01-01</td>
+					<td>N/A</td>
+					<td>1739.0</td>
+					<td>ASIAGO (VI)</td>
+					<td>VI</td>
+					<td>1685602.87</td>
+					<td>5094203.99</td>
+					<td>45.976111</td>
+					<td>11.395555</td>
+					<td>AO</td>
+					<td>114</td>
+					<td>DAO - Malga Porta Manazzo</td>
+					<td>Precipitazione</td>
+					<td>300015855TPR</td>
+					<td>PREC</td>
+					<td>Precipitazione</td>
+					<td class="bs-checkbox "><input data-index="0" name="btSelectItem" type="checkbox"></td>
+				</tr>
+				<tr>
+					<td>VEAO0000115</td>
+					<td>115</td>
+					<td>Meteo_idro_DAO_115</td>
+					<td>DAO - Malga Portule</td>
+					<td>2023-01-01</td>
+					<td>N/A</td>
+					<td>1783.0</td>
+					<td>ASIAGO (VI)</td>
+					<td>VI</td>
+					<td>1691680.65</td>
+					<td>5091300.54</td>
+					<td>45.948333</td>
+					<td>11.472777</td>
+					<td>AO</td>
+					<td>115</td>
+					<td>DAO - Malga Portule</td>
+					<td>Precipitazione</td>
+					<td>300015857TPR</td>
+					<td>PREC</td>
+					<td>Precipitazione</td>
+					<td class="bs-checkbox "><input data-index="0" name="btSelectItem" type="checkbox"></td>
+				</tr>
+				<tr>
+					<td>VEAO0000115</td>
+					<td>115</td>
+					<td>Meteo_idro_DAO_115</td>
+					<td>DAO - Malga Portule</td>
+					<td>2023-01-01</td>
+					<td>N/A</td>
+					<td>1783.0</td>
+					<td>ASIAGO (VI)</td>
+					<td>VI</td>
+					<td>1691680.65</td>
+					<td>5091300.54</td>
+					<td>45.948333</td>
+					<td>11.472777</td>
+					<td>AO</td>
+					<td>115</td>
+					<td>DAO - Malga Portule</td>
+					<td>Precipitazione</td>
+					<td>300015857TPR</td>
+					<td>PREC</td>
+					<td>Precipitazione</td>
+					<td class="bs-checkbox "><input data-index="0" name="btSelectItem" type="checkbox"></td>
+				</tr>
+				<tr>
+					<td>VEAO0000116</td>
+					<td>116</td>
+					<td>Meteo_idro_DAO_116</td>
+					<td>DAO - Monte Novegno</td>
+					<td>2023-01-01</td>
+					<td>N/A</td>
+					<td>1453.0</td>
+					<td>SCHIO (VI)</td>
+					<td>VI</td>
+					<td>1679762.42</td>
+					<td>5070024.82</td>
+					<td>45.760222</td>
+					<td>11.311192</td>
+					<td>AO</td>
+					<td>116</td>
+					<td>DAO - Monte Novegno</td>
+					<td>Precipitazione</td>
+					<td>300015859TPR</td>
+					<td>PREC</td>
+					<td>Precipitazione</td>
+					<td class="bs-checkbox "><input data-index="0" name="btSelectItem" type="checkbox"></td>
+				</tr>
+				<tr>
+					<td>VEAO0000116</td>
+					<td>116</td>
+					<td>Meteo_idro_DAO_116</td>
+					<td>DAO - Monte Novegno</td>
+					<td>2023-01-01</td>
+					<td>N/A</td>
+					<td>1453.0</td>
+					<td>SCHIO (VI)</td>
+					<td>VI</td>
+					<td>1679762.42</td>
+					<td>5070024.82</td>
+					<td>45.760222</td>
+					<td>11.311192</td>
+					<td>AO</td>
+					<td>116</td>
+					<td>DAO - Monte Novegno</td>
+					<td>Precipitazione</td>
+					<td>300015859TPR</td>
+					<td>PREC</td>
+					<td>Precipitazione</td>
+					<td class="bs-checkbox "><input data-index="0" name="btSelectItem" type="checkbox"></td>
+				</tr>
+
+			</tbody>
+		</table>
+	</div>
 </body>
