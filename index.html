@@ -2,71 +2,62 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<meta name="description" content="ARPAV test page">
-	<meta name="keywords" content="ARPAV test page">
-	<meta name="author" content="ICS Piero Grilli">
-	
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="ARPAV test page">
+    <meta name="keywords" content="ARPAV test page">
+    <meta name="author" content="ICS Piero Grilli">
+
     <title>ARPAV test</title>
 
-	<!-- Bootstrap CSS -->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-	<!-- Bootstrap Table CSS -->
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.18.3/bootstrap-table.min.css" rel="stylesheet">
+    <!-- Bootstrap Table CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.18.3/bootstrap-table.min.css" rel="stylesheet">
 
-	<!-- Bootstrap JS and Popper.js -->
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
-	<!-- jQuery -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-	<!-- Bootstrap Table and Export Extension Scripts -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.18.3/bootstrap-table.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.18.3/extensions/export/bootstrap-table-export.min.js"></script>
+    <!-- Bootstrap Table Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.18.3/bootstrap-table.min.js"></script>
 
+    <!-- Bootstrap Table Export and dependencies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsPDF/1.5.3/jspdf.debug.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+    <script src="https://rawgit.com/hhurz/tableExport.jquery.plugin/master/tableExport.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.18.3/extensions/export/bootstrap-table-export.min.js"></script>
 
-	<script>
-		var $table = $('#table');
-		$(function () {
-			$('#toolbar').find('select').change(function () {
-				$table.bootstrapTable('refreshOptions', {
-					exportDataType: $(this).val()
-				});
-			});
-		})
-	
-		var trBoldBlue = $("table");
-	
-		$(trBoldBlue).on("click", "tr", function () {
-			$(this).toggleClass("bold-blue");
-		});
-	</script>
-
-	<style>
-		.container { width: 95%; }
-	</style>
+    <style>
+        .container {
+            width: 95%;
+        }
+    </style>
 </head>
 
 <body>
     <h1 style="text-align: center; padding: 20px;">ARPAV test site</h1>
-	<div class="container">	
+    <div class="container">
 		<div id="toolbar">
-			<select class="form-control">
-				<option value="">Export Basic</option>
-				<option value="all">Export All</option>
-				<option value="selected">Export Selected</option>
-			</select>
-		</div>
-	
-		<table id="table" 
+            <select class="form-control">
+                <option value="">Export Basic</option>
+                <option value="all">Export All</option>
+                <option value="selected">Export Selected</option>
+            </select>
+        </div>
+
+        <table id="table" 
 			data-toggle="table" 
 			data-search="true" 
 			data-filter-control="true" 
 			data-show-export="true"
-			data-click-to-select="true" 
+            data-click-to-select="true" 
 			data-toolbar="#toolbar">
 
 			<thead>
@@ -443,6 +434,34 @@
 				</tr>
 
 			</tbody>
-		</table>
-	</div>
+        </table>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            var $table = $('#table');
+
+            // Initialize the Bootstrap Table with export options
+            $table.bootstrapTable({
+                exportDataType: 'all', // Set the default export type
+                columns: [
+                    // Define your table columns here
+                ]
+            });
+
+            // Handle export options
+            $('#toolbar').find('select').change(function () {
+                $table.bootstrapTable('refreshOptions', {
+                    exportDataType: $(this).val()
+                });
+            });
+
+            // Toggle class on row click
+            $table.on("click", "tr", function () {
+                $(this).toggleClass("bold-blue");
+            });
+        });
+    </script>
 </body>
+
+</html>
