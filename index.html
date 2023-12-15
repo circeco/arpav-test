@@ -36,11 +36,69 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
     <script src="https://rawgit.com/hhurz/tableExport.jquery.plugin/master/tableExport.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.18.3/extensions/export/bootstrap-table-export.min.js"></script>
+
+	<!-- D3.js -->
+	<script src="https://cdn.jsdelivr.net/npm/d3@7/+esm"></script>
+
+	<!-- D3 for table parse -->
+	<script type="module">
+    	import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
+
+		// Fetch DSV data
+		d3.dsv(';', 'SIRAV_anagrafica_stazioni_sensori.csv').then(function (data) {
+			console.log("this is data: ", data);
+
+			// Manually set table headers
+			const headers = [
+				"cartellino", "errore", "statid", "codice", "statid", "codice_stazione", "Codice_SIRAV",
+				"type", "descr", "nome_sensore", "codice_sensore", "Nome", "Inizio", "Fine", "Quota",
+				"Comune", "Provincia", "acronimo", "nome_stazione", "Epsg3003_X", "Epsg3003_Y",
+				"Epsg4258_Lat", "Epsg4258_Lon", "state"
+			];
+
+			// Create a table using D3.js
+			const table = d3.select('#table');
+
+			// Append the table head
+			table.select('thead')
+				.selectAll('th')
+				.data(headers)
+				.enter()
+				.append('th')
+				.text(d => d);
+
+			// Append the table body
+			const tbody = table.select('tbody');
+
+			// Check if data is empty
+			if (data.length === 0) {
+				tbody.append('tr')
+					.attr('class', 'no-records-found')
+					.append('td')
+					.attr('colspan', headers.length)
+					.text('No matching records found');
+			} else {
+				// Append the table rows
+				const rows = tbody.selectAll('tr')
+					.data(data)
+					.enter()
+					.append('tr');
+
+				// Append the table cells
+				rows.selectAll('td')
+					.data(d => headers.map(header => d[header]))
+					.enter()
+					.append('td')
+					.text(d => d);
+			}
+		});
+	</script>
+
 </head>
 
-<body>
-    <h1 style="text-align: center; padding: 20px;">ARPAV test site</h1>
-    <div class="container" style="max-width: 95%;">
+<body style="overflow-x: hidden">
+    <h1 style="text-align: center; padding: 20px">ARPAV test site</h1>
+    <div class="container" style="max-width: 95%">
 
         <table id="table"
             data-toggle="table" 
@@ -55,31 +113,34 @@
 				<tr>
 					<th data-field="cartellino" data-sortable="true"></th>
 					<th data-field="errore" data-filter-control="select" data-sortable="true">Errore</th>
+					<th data-field="sensid" data-filter-control="input" data-sortable="true">sensid</th>
 					<th data-field="codice" data-filter-control="input" data-sortable="true">Codice</th>
-					<th data-field="Codice_SIRAV" data-filter-control="select" data-sortable="true">Codice SIRAV</th>
 					<th data-field="statid" data-filter-control="select" data-sortable="true">statid</th>
+					<th data-field="codice_stazione" data-filter-control="select" data-sortable="true">subnetwork</th>
+					<th data-field="Codice_SIRAV" data-filter-control="select" data-sortable="true">Codice_SIRAV</th>
+					<th data-field="type" data-filter-control="select" data-sortable="true">type</th>
+					<th data-field="descr" data-filter-control="select" data-sortable="true">descr</th>
+					<th data-field="nome_sensore" data-filter-control="select" data-sortable="true">Nome breve sensore</th>
+					<th data-field="codice_sensore" data-filter-control="select" data-sortable="true">Codice sensore</th>
 					<th data-field="Nome" data-filter-control="select" data-sortable="true">Nome</th>
 					<th data-field="Inizio" data-filter-control="select" data-sortable="true">Inizio</th>
 					<th data-field="Fine" data-filter-control="select" data-sortable="true">Fine</th>
 					<th data-field="Quota" data-filter-control="input" data-sortable="true">Quota</th>
 					<th data-field="Comune" data-filter-control="select" data-sortable="true">Comune</th>
 					<th data-field="Provincia" data-filter-control="select" data-sortable="true">Provincia</th>
+					<th data-field="acronimo" data-filter-control="select" data-sortable="true">Acronimo</th>
+					<th data-field="nome_stazione" data-filter-control="select" data-sortable="true">Nome stazione</th>
 					<th data-field="Epsg3003_X" data-filter-control="input" data-sortable="true">Epsg3003_X</th>
 					<th data-field="Epsg3003_Y" data-filter-control="input" data-sortable="true">Epsg3003_Y</th>
 					<th data-field="Epsg4258_Lat" data-filter-control="input" data-sortable="true">Epsg4258_Lat</th>
 					<th data-field="Epsg4258_Lon" data-filter-control="input" data-sortable="true">Epsg4258_Lon</th>
-					<th data-field="acronimo" data-filter-control="select" data-sortable="true">Acronimo</th>
-					<th data-field="codice_stazione" data-filter-control="select" data-sortable="true">Codice stazione</th>
-					<th data-field="nome_stazione" data-filter-control="select" data-sortable="true">Nome stazione</th>
-					<th data-field="nome_sensore" data-filter-control="select" data-sortable="true">Nome sensore</th>
-					<th data-field="codice_sensore" data-filter-control="select" data-sortable="true">Codice sensore</th>
-					<th data-field="type" data-filter-control="select" data-sortable="true">type</th>
-					<th data-field="descr" data-filter-control="select" data-sortable="true">descr</th>
 					<th data-field="state" data-checkbox="true"></th>
 				</tr>
 			</thead>
 
-			<tbody>
+			<tbody></tbody>
+
+			<!-- <tbody>
 				<tr>
 					<td><svg height="20" width="20"><circle cx="10" cy="10" r="10" fill="#ff0000"/></svg></td>
 					<td>Off</td>
@@ -456,20 +517,47 @@
 					<td class="bs-checkbox "><input data-index="14" name="btSelectItem" type="checkbox"></td>
 				</tr>
 
-			</tbody>
+			</tbody> -->
+
+
         </table>
     </div>
 
-	<script>
-        $(document).ready(function () {
-            var $table = $('#table');
+	<!-- <script type="module">
+		import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
+
+        $(document).ready(async function () {
+            const $table = $('#table');
+
+            // Manually set the header
+            const headerColumns = [ "cartellino", "errore", "statid", "codice", "statid", "codice_stazione", "Codice_SIRAV",
+				"type", "descr", "nome_sensore", "codice_sensore", "Nome", "Inizio", "Fine", "Quota",
+				"Comune", "Provincia", "acronimo", "nome_stazione", "Epsg3003_X", "Epsg3003_Y",
+				"Epsg4258_Lat", "Epsg4258_Lon", "state"];
+            const columns = headerColumns.map(column => ({ field: column, title: column, sortable: true }));
 
             // Initialize the Bootstrap Table
-            $table.bootstrapTable();
+            $table.bootstrapTable({
+                columns: columns,
+            });
 
+            // Dynamically load data from DSV file and populate the table body
+            const data = await d3.dsv(';', 'SIRAV_anagrafica_stazioni_sensori.csv');
+            console.log("this is data: ", data)
+
+            // Append the data rows
+            $table.bootstrapTable('load', data);
+        });
+    </script> -->
+
+	<!-- <script>
+        $(document).ready(function () {
+            var $table = $('#table');
+            // Initialize the Bootstrap Table
+            $table.bootstrapTable();
             // You can add more customization or handle events here if needed
         });
-    </script>
+    </script> -->
 </body>
 
 </html>
