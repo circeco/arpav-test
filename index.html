@@ -2,112 +2,55 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="ARPAV test page">
-    <meta name="keywords" content="ARPAV test page">
-    <meta name="author" content="ICS Piero Grilli">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="description" content="ARPAV test page">
+	<meta name="keywords" content="ARPAV test page">
+	<meta name="author" content="ICS Piero Grilli">
 
-    <title>ARPAV test</title>
+	<title>ARPAV test</title>
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <!-- Bootstrap Table CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.18.3/bootstrap-table.min.css" rel="stylesheet">
+	<!-- Bootstrap Table CSS -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.18.3/bootstrap-table.min.css" rel="stylesheet">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap-table@1.18.3/dist/extensions/filter-control/bootstrap-table-filter-control.css" rel="stylesheet">
 
-    <!-- Popper.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
+	<!-- Popper.js -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+	<!-- Bootstrap JS -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
-    <!-- jQuery -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<!-- jQuery -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-    <!-- Bootstrap Table Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.18.3/bootstrap-table.min.js"></script>
+	<!-- Bootstrap Table Scripts -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.18.3/bootstrap-table.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.18.3/dist/extensions/filter-control/bootstrap-table-filter-control.js"></script>
 
-    <!-- Bootstrap Table Export and dependencies -->
+	<!-- Bootstrap Table Export and dependencies -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
-    <script src="https://rawgit.com/hhurz/tableExport.jquery.plugin/master/tableExport.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.18.3/extensions/export/bootstrap-table-export.min.js"></script>
-
-	<!-- D3.js -->
-	<script src="https://cdn.jsdelivr.net/npm/d3@7/+esm"></script>
-
-	<!-- D3 for table parse -->
-	<script type="module">
-    	import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
-
-		// Fetch DSV data
-		d3.dsv(';', 'SIRAV_anagrafica_stazioni_sensori.csv').then(function (data) {
-			console.log("this is data: ", data);
-
-			// Manually set table headers
-			const headers = [
-				"cartellino", "errore", "statid", "codice", "statid", "codice_stazione", "Codice_SIRAV",
-				"type", "descr", "nome_sensore", "codice_sensore", "Nome", "Inizio", "Fine", "Quota",
-				"Comune", "Provincia", "acronimo", "nome_stazione", "Epsg3003_X", "Epsg3003_Y",
-				"Epsg4258_Lat", "Epsg4258_Lon", "state"
-			];
-
-			// Create a table using D3.js
-			const table = d3.select('#table');
-
-			// Append the table head
-			table.select('thead')
-				.selectAll('th')
-				.data(headers)
-				.enter()
-				.append('th')
-				.text(d => d);
-
-			// Append the table body
-			const tbody = table.select('tbody');
-
-			// Check if data is empty
-			if (data.length === 0) {
-				tbody.append('tr')
-					.attr('class', 'no-records-found')
-					.append('td')
-					.attr('colspan', headers.length)
-					.text('No matching records found');
-			} else {
-				// Append the table rows
-				const rows = tbody.selectAll('tr')
-					.data(data)
-					.enter()
-					.append('tr');
-
-				// Append the table cells
-				rows.selectAll('td')
-					.data(d => headers.map(header => d[header]))
-					.enter()
-					.append('td')
-					.text(d => d);
-			}
-		});
-	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+	<script src="https://rawgit.com/hhurz/tableExport.jquery.plugin/master/tableExport.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.18.3/extensions/export/bootstrap-table-export.min.js"></script>
 
 </head>
 
 <body style="overflow-x: hidden">
-    <h1 style="text-align: center; padding: 20px">ARPAV test site</h1>
-    <div class="container" style="max-width: 95%">
+	<h1 style="text-align: center; padding: 20px">ARPAV test site</h1>
+	<div id="table-container" style="margin: auto 20px">
 
-        <table id="table"
-            data-toggle="table" 
-			data-height="600"
-            data-search="true" 
-            data-filter-control="true"
-            data-show-export="true"
-            data-click-to-select="true" 
-            data-export-data-type="selected">
+		<table id="table" 
+			data-toggle="table" 
+			data-height="600" 
+			data-search="true" 
+			data-filter-control="true"
+			data-show-export="true" 
+			data-click-to-select="true" 
+			data-export-data-type="selected">
 
 			<thead>
 				<tr>
@@ -129,7 +72,7 @@
 					<th data-field="comune" data-filter-control="select" data-sortable="true">Comune</th>
 					<th data-field="provincia" data-filter-control="select" data-sortable="true">Provincia</th>
 					<th data-field="acronimo" data-filter-control="select" data-sortable="true">Acronimo</th>
-					<th data-field="nome stazione" data-filter-control="input" data-sortable="true">Nome stazione</th>
+					<th data-field="nome_stazione" data-filter-control="input" data-sortable="true">Nome stazione</th>
 					<th data-field="epsg3003_X" data-filter-control="input" data-sortable="true">Epsg3003_X</th>
 					<th data-field="epsg3003_Y" data-filter-control="input" data-sortable="true">Epsg3003_Y</th>
 					<th data-field="epsg4258_Lat" data-filter-control="input" data-sortable="true">Epsg4258_Lat</th>
@@ -143,421 +86,93 @@
 			<!-- <tbody>
 				<tr>
 					<td><svg height="20" width="20"><circle cx="10" cy="10" r="10" fill="#ff0000"/></svg></td>
-					<td>Off</td>
-					<td>VEVN0000068</td>
-					<td>68</td>
-					<td>Meteo_idro_CVN_68</td>
-					<td>Arsenale CVN</td>
-					<td>2019-06-01</td>
-					<td>N/A</td>
-					<td>N/A</td>
-					<td>VENEZIA (VE)</td>
-					<td>VE</td>
-					<td>1762299.316</td>
-					<td>5036992.561</td>
-					<td>N/A</td>
-					<td>N/A</td>
-					<td>VN</td>
-					<td>68</td>
-					<td>Arsenale CVN</td>
-					<td>Pressione atmosferica</td>
-					<td>300013124PRA</td>
-					<td>PRESS</td>
-					<td>Pressione atmosferica</td>
 					<td class="bs-checkbox "><input data-index="0" name="btSelectItem" type="checkbox"></td>
 				</tr>
 				<tr>
 					<td><svg height="20" width="20"><circle cx="10" cy="10" r="10" fill="#f47801"/></svg></td>
-					<td>Warning</td>
-					<td>VEVN0000662</td>
-					<td>662</td>
-					<td>Meteo_idro_CVN_662</td>
-					<td>Chioggia laguna CVN</td>
-					<td>2019-06-01</td>
-					<td>N/A</td>
-					<td>N/A</td>
-					<td>VENEZIA (VE)</td>
-					<td>VE</td>
-					<td>1757565.882</td>
-					<td>5014042.024</td>
-					<td>N/A</td>
-					<td>N/A</td>
-					<td>VN</td>
-					<td>662</td>
-					<td>Chioggia laguna CVN</td>
-					<td>Pressione atmosferica</td>
-					<td>300013134PRA</td>
-					<td>PRESS</td>
-					<td>Pressione atmosferica</td>
 					<td class="bs-checkbox "><input data-index="1" name="btSelectItem" type="checkbox"></td>
 				</tr>
 				<tr>
 					<td><svg height="20" width="20"><circle cx="10" cy="10" r="10" fill="#01f460"/></svg></td>
-					<td>Good</td>
-					<td>VEVN0000664</td>
-					<td>664</td>
-					<td>Meteo_idro_CVN_664</td>
-					<td>Malamocco laguna CVN</td>
-					<td>2019-06-01</td>
-					<td>N/A</td>
-					<td>N/A</td>
-					<td>VENEZIA (VE)</td>
-					<td>VE</td>
-					<td>1758540.095</td>
-					<td>5025899.43</td>
-					<td>N/A</td>
-					<td>N/A</td>
-					<td>VN</td>
-					<td>664</td>
-					<td>Malamocco laguna CVN</td>
-					<td>Pressione atmosferica</td>
-					<td>300013139PRA</td>
-					<td>PRESS</td>
-					<td>Pressione atmosferica</td>
 					<td class="bs-checkbox "><input data-index="2" name="btSelectItem" type="checkbox"></td>
 				</tr>
 				<tr>
 					<td><svg height="20" width="20"><circle cx="10" cy="10" r="10" fill="#f4db01"/></svg></td>
-					<td>To Check</td>
-					<td>VEAO0000101</td>
-					<td>101</td>
-					<td>Meteo_idro_DAO_101</td>
-					<td>DAO - Arsie&#39;</td>
-					<td>2023-01-01</td>
-					<td>N/A</td>
-					<td>1428.0</td>
-					<td>ARSIE&#39; (BL)</td>
-					<td>BL</td>
-					<td>1707951.934</td>
-					<td>5098395.483</td>
-					<td>45.976554</td>
-					<td>11.75609</td>
-					<td>AO</td>
-					<td>101</td>
-					<td>DAO - Arsie&#39;</td>
-					<td>Precipitazione</td>
-					<td>300015849TPR</td>
-					<td>PREC</td>
-					<td>Precipitazione</td>
 					<td class="bs-checkbox "><input data-index="3" name="btSelectItem" type="checkbox"></td>
 				</tr>
-				<tr>
-					<td><svg height="20" width="20"><circle cx="10" cy="10" r="10" fill="#f4db01"/></svg></td>
-					<td>To Check</td>
-					<td>VEAO0000101</td>
-					<td>101</td>
-					<td>Meteo_idro_DAO_101</td>
-					<td>DAO - Arsie&#39;</td>
-					<td>2023-01-01</td>
-					<td>N/A</td>
-					<td>1428.0</td>
-					<td>ARSIE&#39; (BL)</td>
-					<td>BL</td>
-					<td>1707951.934</td>
-					<td>5098395.483</td>
-					<td>45.976554</td>
-					<td>11.75609</td>
-					<td>AO</td>
-					<td>101</td>
-					<td>DAO - Arsie&#39;</td>
-					<td>Precipitazione</td>
-					<td>300015849TPR</td>
-					<td>PREC</td>
-					<td>Precipitazione</td>
-					<td class="bs-checkbox "><input data-index="4" name="btSelectItem" type="checkbox"></td>
-				</tr>
-				<tr>
-					<td><svg height="20" width="20"><circle cx="10" cy="10" r="10" fill="#f4db01"/></svg></td>
-					<td>To Check</td>
-					<td>VEAO0000111</td>
-					<td>111</td>
-					<td>Meteo_idro_DAO_111</td>
-					<td>DAO - Foza</td>
-					<td>2023-01-01</td>
-					<td>N/A</td>
-					<td>1183.0</td>
-					<td>FOZA (VI)</td>
-					<td>VI</td>
-					<td>1706130.21</td>
-					<td>5084713.09</td>
-					<td>45.884924</td>
-					<td>11.656186</td>
-					<td>AO</td>
-					<td>111</td>
-					<td>DAO - Foza</td>
-					<td>Precipitazione</td>
-					<td>300015851TPR</td>
-					<td>PREC</td>
-					<td>Precipitazione</td>
-					<td class="bs-checkbox "><input data-index="5" name="btSelectItem" type="checkbox"></td>
-				</tr>
-				<tr>
-					<td><svg height="20" width="20"><circle cx="10" cy="10" r="10" fill="#01f460"/></svg></td>
-					<td>Good</td>
-					<td>VEAO0000111</td>
-					<td>111</td>
-					<td>Meteo_idro_DAO_111</td>
-					<td>DAO - Foza</td>
-					<td>2023-01-01</td>
-					<td>N/A</td>
-					<td>1183.0</td>
-					<td>FOZA (VI)</td>
-					<td>VI</td>
-					<td>1706130.21</td>
-					<td>5084713.09</td>
-					<td>45.884924</td>
-					<td>11.656186</td>
-					<td>AO</td>
-					<td>111</td>
-					<td>DAO - Foza</td>
-					<td>Precipitazione</td>
-					<td>300015851TPR</td>
-					<td>PREC</td>
-					<td>Precipitazione</td>
-					<td class="bs-checkbox "><input data-index="6" name="btSelectItem" type="checkbox"></td>
-				</tr>
-				<tr>
-					<td><svg height="20" width="20"><circle cx="10" cy="10" r="10" fill="#01f460"/></svg></td>
-					<td>Good</td>
-					<td>VEAO0000112</td>
-					<td>112</td>
-					<td>Meteo_idro_DAO_112</td>
-					<td>DAO - Gallio Campomulo</td>
-					<td>2023-01-01</td>
-					<td>N/A</td>
-					<td>1533.0</td>
-					<td>GALLIO (VI)</td>
-					<td>VI</td>
-					<td>1697864.61</td>
-					<td>5090661.42</td>
-					<td>45.940833</td>
-					<td>11.552222</td>
-					<td>AO</td>
-					<td>112</td>
-					<td>DAO - Gallio Campomulo</td>
-					<td>Precipitazione</td>
-					<td>300015853TPR</td>
-					<td>PREC</td>
-					<td>Precipitazione</td>
-					<td class="bs-checkbox "><input data-index="7" name="btSelectItem" type="checkbox"></td>
-				</tr>
-				<tr>
-					<td><svg height="20" width="20"><circle cx="10" cy="10" r="10" fill="#01f460"/></svg></td>
-					<td>Good</td>
-					<td>VEAO0000112</td>
-					<td>112</td>
-					<td>Meteo_idro_DAO_112</td>
-					<td>DAO - Gallio Campomulo</td>
-					<td>2023-01-01</td>
-					<td>N/A</td>
-					<td>1533.0</td>
-					<td>GALLIO (VI)</td>
-					<td>VI</td>
-					<td>1697864.61</td>
-					<td>5090661.42</td>
-					<td>45.940833</td>
-					<td>11.552222</td>
-					<td>AO</td>
-					<td>112</td>
-					<td>DAO - Gallio Campomulo</td>
-					<td>Precipitazione</td>
-					<td>300015853TPR</td>
-					<td>PREC</td>
-					<td>Precipitazione</td>
-					<td class="bs-checkbox "><input data-index="8" name="btSelectItem" type="checkbox"></td>
-				</tr>
-				<tr>
-					<td><svg height="20" width="20"><circle cx="10" cy="10" r="10" fill="#f47801"/></svg></td>
-					<td>Warning</td>
-					<td>VEAO0000114</td>
-					<td>114</td>
-					<td>Meteo_idro_DAO_114</td>
-					<td>DAO - Malga Porta Manazzo</td>
-					<td>2023-01-01</td>
-					<td>N/A</td>
-					<td>1739.0</td>
-					<td>ASIAGO (VI)</td>
-					<td>VI</td>
-					<td>1685602.87</td>
-					<td>5094203.99</td>
-					<td>45.976111</td>
-					<td>11.395555</td>
-					<td>AO</td>
-					<td>114</td>
-					<td>DAO - Malga Porta Manazzo</td>
-					<td>Precipitazione</td>
-					<td>300015855TPR</td>
-					<td>PREC</td>
-					<td>Precipitazione</td>
-					<td class="bs-checkbox "><input data-index="9" name="btSelectItem" type="checkbox"></td>
-				</tr>
-				<tr>
-					<td><svg height="20" width="20"><circle cx="10" cy="10" r="10" fill="#f47801"/></svg></td>
-					<td>Warning</td>
-					<td>VEAO0000114</td>
-					<td>114</td>
-					<td>Meteo_idro_DAO_114</td>
-					<td>DAO - Malga Porta Manazzo</td>
-					<td>2023-01-01</td>
-					<td>N/A</td>
-					<td>1739.0</td>
-					<td>ASIAGO (VI)</td>
-					<td>VI</td>
-					<td>1685602.87</td>
-					<td>5094203.99</td>
-					<td>45.976111</td>
-					<td>11.395555</td>
-					<td>AO</td>
-					<td>114</td>
-					<td>DAO - Malga Porta Manazzo</td>
-					<td>Precipitazione</td>
-					<td>300015855TPR</td>
-					<td>PREC</td>
-					<td>Precipitazione</td>
-					<td class="bs-checkbox "><input data-index="10" name="btSelectItem" type="checkbox"></td>
-				</tr>
-				<tr>
-					<td><svg height="20" width="20"><circle cx="10" cy="10" r="10" fill="#f47801"/></svg></td>
-					<td>Warning</td>
-					<td>VEAO0000115</td>
-					<td>115</td>
-					<td>Meteo_idro_DAO_115</td>
-					<td>DAO - Malga Portule</td>
-					<td>2023-01-01</td>
-					<td>N/A</td>
-					<td>1783.0</td>
-					<td>ASIAGO (VI)</td>
-					<td>VI</td>
-					<td>1691680.65</td>
-					<td>5091300.54</td>
-					<td>45.948333</td>
-					<td>11.472777</td>
-					<td>AO</td>
-					<td>115</td>
-					<td>DAO - Malga Portule</td>
-					<td>Precipitazione</td>
-					<td>300015857TPR</td>
-					<td>PREC</td>
-					<td>Precipitazione</td>
-					<td class="bs-checkbox "><input data-index="11" name="btSelectItem" type="checkbox"></td>
-				</tr>
-				<tr>
-					<td><svg height="20" width="20"><circle cx="10" cy="10" r="10" fill="#ff0000"/></svg></td>
-					<td>Off</td>
-					<td>VEAO0000115</td>
-					<td>115</td>
-					<td>Meteo_idro_DAO_115</td>
-					<td>DAO - Malga Portule</td>
-					<td>2023-01-01</td>
-					<td>N/A</td>
-					<td>1783.0</td>
-					<td>ASIAGO (VI)</td>
-					<td>VI</td>
-					<td>1691680.65</td>
-					<td>5091300.54</td>
-					<td>45.948333</td>
-					<td>11.472777</td>
-					<td>AO</td>
-					<td>115</td>
-					<td>DAO - Malga Portule</td>
-					<td>Precipitazione</td>
-					<td>300015857TPR</td>
-					<td>PREC</td>
-					<td>Precipitazione</td>
-					<td class="bs-checkbox "><input data-index="12" name="btSelectItem" type="checkbox"></td>
-				</tr>
-				<tr>
-					<td><svg height="20" width="20"><circle cx="10" cy="10" r="10" fill="#ff0000"/></svg></td>
-					<td>Off</td>
-					<td>VEAO0000116</td>
-					<td>116</td>
-					<td>Meteo_idro_DAO_116</td>
-					<td>DAO - Monte Novegno</td>
-					<td>2023-01-01</td>
-					<td>N/A</td>
-					<td>1453.0</td>
-					<td>SCHIO (VI)</td>
-					<td>VI</td>
-					<td>1679762.42</td>
-					<td>5070024.82</td>
-					<td>45.760222</td>
-					<td>11.311192</td>
-					<td>AO</td>
-					<td>116</td>
-					<td>DAO - Monte Novegno</td>
-					<td>Precipitazione</td>
-					<td>300015859TPR</td>
-					<td>PREC</td>
-					<td>Precipitazione</td>
-					<td class="bs-checkbox "><input data-index="13" name="btSelectItem" type="checkbox"></td>
-				</tr>
-				<tr>
-					<td><svg height="20" width="20"><circle cx="10" cy="10" r="10" fill="#ff0000"/></svg></td>
-					<td>Off</td>
-					<td>VEAO0000116</td>
-					<td>116</td>
-					<td>Meteo_idro_DAO_116</td>
-					<td>DAO - Monte Novegno</td>
-					<td>2023-01-01</td>
-					<td>N/A</td>
-					<td>1453.0</td>
-					<td>SCHIO (VI)</td>
-					<td>VI</td>
-					<td>1679762.42</td>
-					<td>5070024.82</td>
-					<td>45.760222</td>
-					<td>11.311192</td>
-					<td>AO</td>
-					<td>116</td>
-					<td>DAO - Monte Novegno</td>
-					<td>Precipitazione</td>
-					<td>300015859TPR</td>
-					<td>PREC</td>
-					<td>Precipitazione</td>
-					<td class="bs-checkbox "><input data-index="14" name="btSelectItem" type="checkbox"></td>
-				</tr>
-
 			</tbody> -->
 
 
-        </table>
-    </div>
+		</table>
+	</div>
 
-	<!-- <script type="module">
+	<script type="module">
 		import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
-        $(document).ready(async function () {
-            const $table = $('#table');
+		// Select the HTML element where you want to place the table
+		const table = d3.select("#table-container").select("table");
 
-            // Manually set the header
-            const headerColumns = [ "cartellino", "errore", "statid", "codice", "statid", "codice_stazione", "Codice_SIRAV",
-				"type", "descr", "nome_sensore", "codice_sensore", "Nome", "Inizio", "Fine", "Quota",
-				"Comune", "Provincia", "acronimo", "nome_stazione", "Epsg3003_X", "Epsg3003_Y",
-				"Epsg4258_Lat", "Epsg4258_Lon", "state"];
-            const columns = headerColumns.map(column => ({ field: column, title: column, sortable: true }));
+		const columns = [
+			"cartellino", "errore", "sensid", "codice", "statid", "subnetwork", "codice_SIRAV",
+			"type", "descr", "nome_breve_sensore", "codice_sensore", "nome", "inizio", "fine", "quota",
+			"comune", "provincia", "acronimo", "nome_stazione", "epsg3003_X", "epsg3003_Y",
+			"epsg4258_Lat", "epsg4258_Lon", "state"
+		];
 
-            // Initialize the Bootstrap Table
-            $table.bootstrapTable({
-                columns: columns,
-            });
+		// Create a table body
+		const tbody = table.select("tbody");
 
-            // Dynamically load data from DSV file and populate the table body
-            const data = await d3.dsv(';', 'SIRAV_anagrafica_stazioni_sensori.csv');
-            console.log("this is data: ", data)
+		// Load the CSV file
+		function convert(d) {
+			return {
+				cartellino: d.cartellino,
+				errore: d.errore,
+				sensid: d.sensid,
+				codice: d.codice,
+				statid: d.statid,
+				subnetwork: d.subnetwork,
+				codice_SIRAV: d.codice_SIRAV,
+				type: d.type,
+				descr: d.descr,
+				nome_breve_sensore: d.nome_breve_sensore,
+				codice_sensore: d.codice_sensore,
+				nome: d.nome,
+				inizio: d.inizio,
+				fine: d.fine,
+				quota: d.quota,
+				comune: d.comune,
+				provincia: d.provincia,
+				acronimo: d.acronimo,
+				nome_stazione: d.nome_stazione,
+				epsg3003_X: d.epsg3003_X,
+				epsg3003_Y: d.epsg3003_Y,
+				epsg4258_Lat: d.epsg4258_Lat,
+				epsg4258_Lon: d.epsg4258_Lon,
+				state: d.state
+			}
+		}
+		const data = await d3.dsv(";", "SIRAV_anagrafica_stazioni_sensori.csv", convert);
 
-            // Append the data rows
-            $table.bootstrapTable('load', data);
-        });
-    </script> -->
+		console.log("This is data: ", data)
+		// Data loading is complete, now you can use the data
+		const rows = tbody.selectAll("tr")
+			.data(data)
+			.enter().append("tr");
 
-	<script>
-        $(document).ready(function () {
-            var $table = $('#table');
-            // Initialize the Bootstrap Table
-            $table.bootstrapTable();
-            // You can add more customization or handle events here if needed
-        });
-    </script>
+		// Create cells for each row
+		rows.selectAll("td")
+			.data(row => columns.map(column => ({ column: column, value: row[column] })))
+			.enter().append("td")
+			.text(d => d.value);
+
+
+		$(document).ready(function () {
+			var $table = $('#table');
+			// Initialize the Bootstrap Table
+			$table.bootstrapTable();
+			// You can add more customization or handle events here if needed
+		});
+	</script>
 </body>
 
 </html>
