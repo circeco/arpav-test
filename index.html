@@ -42,46 +42,28 @@
 <body style="overflow-x: hidden">
 	<h1 style="text-align: center; padding: 20px">ARPAV test site</h1>
 	<div id="table-container" style="margin: auto 20px">
-
-		<table id="table" 
+		<table id="table"
 			data-toggle="table" 
 			data-height="600" 
 			data-search="true" 
 			data-filter-control="true"
-			data-show-export="true" 
-			data-click-to-select="true" 
-			data-export-data-type="selected">
+			data-sortable="true">
 
 			<thead>
-				<tr>
-					<th data-field="cartellino" data-sortable="true"></th>
-					<th data-field="errore" data-filter-control="select" data-sortable="true">Errore</th>
-					<th data-field="sensid" data-filter-control="input" data-sortable="true">Sensore ID</th>
-					<th data-field="codice" data-filter-control="input" data-sortable="true">Codice</th>
-					<th data-field="statid" data-filter-control="input" data-sortable="true">Station ID</th>
-					<th data-field="subnetwork" data-filter-control="select" data-sortable="true">Subnetwork</th>
-					<th data-field="codice_SIRAV" data-filter-control="input" data-sortable="true">Codice_SIRAV</th>
-					<th data-field="type" data-filter-control="select" data-sortable="true">Type</th>
-					<th data-field="descr" data-filter-control="select" data-sortable="true">Descrizione</th>
-					<th data-field="nome_breve_sensore" data-filter-control="select" data-sortable="true">Nome breve sensore</th>
-					<th data-field="codice_sensore" data-filter-control="input" data-sortable="true">Codice sensore</th>
-					<th data-field="nome" data-filter-control="input" data-sortable="true">Nome</th>
-					<th data-field="inizio" data-filter-control="select" data-sortable="true">Inizio</th>
-					<th data-field="fine" data-filter-control="select" data-sortable="true">Fine</th>
-					<th data-field="quota" data-filter-control="input" data-sortable="true">Quota</th>
-					<th data-field="comune" data-filter-control="select" data-sortable="true">Comune</th>
-					<th data-field="provincia" data-filter-control="select" data-sortable="true">Provincia</th>
-					<th data-field="acronimo" data-filter-control="select" data-sortable="true">Acronimo</th>
-					<th data-field="nome_stazione" data-filter-control="input" data-sortable="true">Nome stazione</th>
-					<th data-field="epsg3003_X" data-filter-control="input" data-sortable="true">Epsg3003_X</th>
-					<th data-field="epsg3003_Y" data-filter-control="input" data-sortable="true">Epsg3003_Y</th>
-					<th data-field="epsg4258_Lat" data-filter-control="input" data-sortable="true">Epsg4258_Lat</th>
-					<th data-field="epsg4258_Lon" data-filter-control="input" data-sortable="true">Epsg4258_Lon</th>
-					<th data-field="state" data-checkbox="true"></th>
-				</tr>
-			</thead>
+                <tr>
+                    <th data-field="Autorità" data-sortable="true" data-filter-control="input">Autorità</th>
+                    <th data-field="Sottorete" data-sortable="true" data-filter-control="input">Sottorete</th>
+                    <th data-field="Stazione-Sensore" data-sortable="true" data-filter-control="input">Stazione-Sensore</th>
+                    <th data-field="Colore" data-sortable="true" data-filter-control="select">Colore</th>
+                    <th data-field="Significato" data-sortable="true" data-filter-control="input">Significato</th>
+                    <th data-field="Codice_sensore" data-sortable="true" data-filter-control="input">Codice_sensore</th>
+                    <th data-field="Descr" data-sortable="true" data-filter-control="input">Descr</th>
+                    <th data-field="Perc.Dati_in_file" data-sortable="true" data-filter-control="input">Perc.Dati_in_file</th>
+                    <th data-field="Stima di frequenza[min]" data-sortable="true" data-filter-control="input">Stima di frequenza[min]</th>
+                </tr>
+            </thead>
 
-			<tbody></tbody>
+			<!-- <tbody></tbody> -->
 
 			<!-- <tbody>
 				<tr>
@@ -106,73 +88,89 @@
 		</table>
 	</div>
 
-	<script type="module">
-		import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
+    <script type="module">
+        // Select the HTML element where you want to place the table
+        const table = $("#table");
 
-		// Select the HTML element where you want to place the table
-		const table = d3.select("#table-container").select("table");
+        // Fetch the JSON file
+        fetch("SensCheck_Meteo_idro_ARPAV_20231103_061855.json")
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json(); // Parse response as JSON
+            })
+            .then(data => {
+                console.log("Data received:", data);
 
-		const columns = [
-			"cartellino", "errore", "sensid", "codice", "statid", "subnetwork", "codice_SIRAV",
-			"type", "descr", "nome_breve_sensore", "codice_sensore", "nome", "inizio", "fine", "quota",
-			"comune", "provincia", "acronimo", "nome_stazione", "epsg3003_X", "epsg3003_Y",
-			"epsg4258_Lat", "epsg4258_Lon", "state"
-		];
+                // Create column definitions for each column with data-filter-control
+                const tableObj = {
+                    columns: [
+                        {
+                            title: 'Autorità',
+                            field: 'Autorità',
+                            sortable: true,
+                            filterControl: 'input',
+                        },
+                        {
+                            title: 'Sottorete',
+                            field: 'Sottorete',
+                            sortable: true,
+                            filterControl: 'input',
+                        },
+                        {
+                            title: 'Stazione-Sensore',
+                            field: 'Stazione-Sensore',
+                            sortable: true,
+                            filterControl: 'input',
+                        },
+                        {
+                            title: 'Colore',
+                            field: 'Colore',
+                            sortable: true,
+                            filterControl: 'select',
+                        },
+                        {
+                            title: 'Significato',
+                            field: 'Significato',
+                            sortable: true,
+                            filterControl: 'input',
+                        },
+                        {
+                            title: 'Codice_sensore',
+                            field: 'Codice_sensore',
+                            sortable: true,
+                            filterControl: 'input',
+                        },
+                        {
+                            title: 'Descr',
+                            field: 'Descr',
+                            sortable: true,
+                            filterControl: 'input',
+                        },
+                        {
+                            title: 'Perc.Dati_in_file',
+                            field: 'Perc.Dati_in_file',
+                            sortable: true,
+                            filterControl: 'input',
+                        },
+                        {
+                            title: 'Stima di frequenza[min]',
+                            field: 'Stima di frequenza[min]',
+                            sortable: true,
+                            filterControl: 'input',
+                        },
+                    ],
+                    data: data,
+                };
 
-		// Create a table body
-		const tbody = table.select("tbody");
-
-		// Load the CSV file
-		function convert(d) {
-			return {
-				cartellino: d.cartellino,
-				errore: d.errore,
-				sensid: d.sensid,
-				codice: d.codice,
-				statid: d.statid,
-				subnetwork: d.subnetwork,
-				codice_SIRAV: d.codice_SIRAV,
-				type: d.type,
-				descr: d.descr,
-				nome_breve_sensore: d.nome_breve_sensore,
-				codice_sensore: d.codice_sensore,
-				nome: d.nome,
-				inizio: d.inizio,
-				fine: d.fine,
-				quota: d.quota,
-				comune: d.comune,
-				provincia: d.provincia,
-				acronimo: d.acronimo,
-				nome_stazione: d.nome_stazione,
-				epsg3003_X: d.epsg3003_X,
-				epsg3003_Y: d.epsg3003_Y,
-				epsg4258_Lat: d.epsg4258_Lat,
-				epsg4258_Lon: d.epsg4258_Lon,
-				state: d.state
-			}
-		}
-		const data = await d3.dsv(";", "SIRAV_anagrafica_stazioni_sensori.csv", convert);
-
-		console.log("This is data: ", data)
-		// Data loading is complete, now you can use the data
-		const rows = tbody.selectAll("tr")
-			.data(data)
-			.enter().append("tr");
-
-		// Create cells for each row
-		rows.selectAll("td")
-			.data(row => columns.map(column => ({ column: column, value: row[column] })))
-			.enter().append("td")
-			.text(d => d.value);
-
-
-		$(document).ready(function () {
-			var $table = $('#table');
-			// Initialize the Bootstrap Table
-			$table.bootstrapTable();
-			// You can add more customization or handle events here if needed
-		});
-	</script>
+                // Initialize the Bootstrap Table
+                table.bootstrapTable('destroy').bootstrapTable(tableObj);
+            })
+            .catch(error => {
+                console.error("Error fetching or parsing JSON:", error);
+            });
+    </script>
 </body>
 
 </html>
