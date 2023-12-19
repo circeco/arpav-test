@@ -140,10 +140,10 @@
             // Assuming value is a string representing a color
             // Map the color values to corresponding SVG code
             const colorMap = {
-                'VERDE': '<svg height="20" width="20"><circle cx="10" cy="10" r="10" fill="#008080"/></svg>',
-                'GIALLO': '<svg height="20" width="20"><circle cx="10" cy="10" r="10" fill="#FFFF99"/></svg>',
-                'ARANCIO': '<svg height="20" width="20"><circle cx="10" cy="10" r="10" fill="#FFDAB9"/></svg>',
-                'ROSSO': '<svg height="20" width="20"><circle cx="10" cy="10" r="10" fill="#FF8C00"/></svg>',
+                'VERDE': '<svg height="20" width="20"><circle cx="10" cy="10" r="9" fill="#008080" stroke="#808080" stroke-width="1"/></svg>',
+                'GIALLO': '<svg height="20" width="20"><circle cx="10" cy="10" r="9" fill="#FFFF99" stroke="#808080" stroke-width="1"/></svg>',
+                // 'ARANCIO': '<svg height="20" width="20"><circle cx="10" cy="10" r="10" fill="#FFDAB9"/></svg>',
+                'ROSSO': '<svg height="20" width="20"><circle cx="10" cy="10" r="9" fill="#FF8C00" stroke="#808080" stroke-width="1"/></svg>',
             };
             // Return the corresponding SVG code based on the color value
             return colorMap[value] || value; // If the color is not in the map, return the original value
