@@ -2,59 +2,121 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<meta name="description" content="ARPAV test page">
-	<meta name="keywords" content="ARPAV test page">
-	<meta name="author" content="ICS Piero Grilli">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="ARPAV test page">
+    <meta name="keywords" content="ARPAV test page">
+    <meta name="author" content="ICS Piero Grilli">
 
-	<title>ARPAV test</title>
+    <title>ARPAV test</title>
 
-	<!-- Bootstrap CSS -->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-	<!-- Bootstrap Table CSS -->
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.18.3/bootstrap-table.min.css" rel="stylesheet">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap-table@1.18.3/dist/extensions/filter-control/bootstrap-table-filter-control.css" rel="stylesheet">
+    <!-- Bootstrap Table CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.18.3/bootstrap-table.min.css" rel="stylesheet">
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap-table@1.18.3/dist/extensions/filter-control/bootstrap-table-filter-control.css"
+        rel="stylesheet">
 
-	<!-- Popper.js -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
+    <!-- Popper.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
 
-	<!-- Bootstrap JS -->
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 
-	<!-- jQuery -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-	<!-- Bootstrap Table Scripts -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.18.3/bootstrap-table.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.18.3/dist/extensions/filter-control/bootstrap-table-filter-control.js"></script>
+    <!-- Bootstrap Table Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.18.3/bootstrap-table.min.js"></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.18.3/dist/extensions/filter-control/bootstrap-table-filter-control.js"></script>
 
-	<!-- Bootstrap Table Export and dependencies -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
-	<script src="https://rawgit.com/hhurz/tableExport.jquery.plugin/master/tableExport.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.18.3/extensions/export/bootstrap-table-export.min.js"></script>
+    <!-- Bootstrap Table Export and dependencies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+    <script src="https://rawgit.com/hhurz/tableExport.jquery.plugin/master/tableExport.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.18.3/extensions/export/bootstrap-table-export.min.js"></script>
 
 </head>
 
 <body style="overflow-x: hidden">
-	<h1 style="text-align: center; padding: 20px">ARPAV test site</h1>
-	<div id="table-container" style="margin: auto 20px">
-		<table id="table"
-			data-toggle="table" 
-			data-height="600" 
-			data-filter-control="true">
-
-		</table>
-	</div>
+    <div style="display: inline-flex; align-items: center; margin: 20px">
+        <h1 style="text-align: left; padding: 20px">ARPAV sensors testing site</h1>
+        <table id="dato-globale" style="font-size: 14px; border: 2px solid #000;">
+        </table>
+    </div>
+    <div id="table-container" style="margin: auto 20px">
+        <table id="sensor-table" 
+            data-toggle="table" 
+            data-height="600" 
+            data-filter-control="true">
+        </table>
+    </div>
 
     <script type="module">
-        // Select the HTML element where you want to place the table
-        const table = $("#table");
+        // DATO GLOBALE TABLE
+        const datoGlobaleTable = $("#dato-globale");
+        fetch("GlobCheck_Meteo_idro_ARPAV_20231103_061855.json")
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json(); // Parse response as JSON
+            })
+            .then(data => {
+                console.log("Dato globale received:", data);
 
-        // Fetch the JSON file
+                const tableObj = {
+                    columns: [
+                        {
+                            title: 'Flusso',
+                            field: 'Flusso',
+                        },
+                        {
+                            title: 'Autorità',
+                            field: 'Autorità',
+                        },
+                        {
+                            title: 'Sottorete',
+                            field: 'Sottorete',
+                        },
+                        {
+                            title: 'Colore',
+                            field: 'Colore',
+                            formatter: coloreFormatter, // Assuming you want to use the same formatter function
+                            align: 'center',
+                        },
+                        {
+                            title: 'Significato',
+                            field: 'Significato',
+                        },
+                        {
+                            title: '% di sensori mancanti',
+                            field: 'Percentuale_sensori_mancanti', 
+                            formatter: (value, row, index, field) => {
+                                return value.toFixed(2);
+                            },
+                        },
+                    ],
+                    data: data,
+                };
+                // Initialize the Bootstrap Table for "dato-globale"
+                datoGlobaleTable.bootstrapTable('destroy').bootstrapTable(tableObj);
+            })
+            .catch(error => {
+                console.error("Error fetching or parsing JSON:", error);
+            });
+
+
+        // TABLE DATO SENSORE
+        const sensorTable = $("#sensor-table");
         fetch("SensCheck_Meteo_idro_ARPAV_20231103_061855.json")
             .then(response => {
                 if (!response.ok) {
@@ -129,21 +191,22 @@
                     data: data,
                 };
                 // Initialize the Bootstrap Table
-                table.bootstrapTable('destroy').bootstrapTable(tableObj);
+                sensorTable.bootstrapTable('destroy').bootstrapTable(tableObj);
 
             })
             .catch(error => {
                 console.error("Error fetching or parsing JSON:", error);
             });
 
-            function coloreFormatter(value, row, index, field) {
+        function coloreFormatter(value, row, index, field) {
             // Assuming value is a string representing a color
             // Map the color values to corresponding SVG code
             const colorMap = {
                 'VERDE': '<svg height="20" width="20"><circle cx="10" cy="10" r="9" fill="#008080" stroke="#808080" stroke-width="1"/></svg>',
                 'GIALLO': '<svg height="20" width="20"><circle cx="10" cy="10" r="9" fill="#FFFF99" stroke="#808080" stroke-width="1"/></svg>',
-                // 'ARANCIO': '<svg height="20" width="20"><circle cx="10" cy="10" r="10" fill="#FFDAB9"/></svg>',
-                'ROSSO': '<svg height="20" width="20"><circle cx="10" cy="10" r="9" fill="#FF8C00" stroke="#808080" stroke-width="1"/></svg>',
+                'NERO': '<svg height="20" width="20"><circle cx="10" cy="10" r="10" fill="#000"/></svg>',
+                'ROSSO': '<svg height="20" width="20"><circle cx="10" cy="10" r="9" fill="#b51963" stroke="#808080" stroke-width="1"/></svg>',
+                'ARANCIO': '<svg height="20" width="20"><circle cx="10" cy="10" r="9" fill="#FF8C00" stroke="#808080" stroke-width="1"/></svg>',
             };
             // Return the corresponding SVG code based on the color value
             return colorMap[value] || value; // If the color is not in the map, return the original value
