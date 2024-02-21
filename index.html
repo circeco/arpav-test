@@ -48,7 +48,7 @@
 
 <body style="overflow-x: hidden">
     <div style="display: inline-flex; align-items: center; margin: 20px">
-        <h1 style="text-align: left; padding: 20px">ARPAV sensors testing site</h1>
+        <h1 style="text-align: left; padding: 20px">ARPAV sensor testing site</h1>
         <table id="dato-globale" style="font-size: 14px; border: 2px solid #000;">
         </table>
     </div>
@@ -63,7 +63,7 @@
     <script type="module">
         // DATO GLOBALE TABLE
         const datoGlobaleTable = $("#dato-globale");
-        fetch("GlobCheck_Meteo_idro_ARPAV_20231103_061855.json")
+        fetch("GlobCheck.json")
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
@@ -117,7 +117,7 @@
 
         // TABLE DATO SENSORE
         const sensorTable = $("#sensor-table");
-        fetch("SensCheck_Meteo_idro_ARPAV_20231103_061855.json")
+        fetch("SensCheck.json")
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
@@ -162,8 +162,8 @@
                             filterControl: 'select',
                         },
                         {
-                            title: 'Codice sensore',
-                            field: 'Codice_sensore',
+                            title: 'Nome sensore',
+                            field: 'Nome_sensore',
                             sortable: true,
                             filterControl: 'input',
                         },

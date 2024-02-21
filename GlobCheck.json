@@ -1,0 +1,82 @@
+[
+    {
+        "Flusso": "SIRAV",
+        "Autorit\u00e0": "ARPAV",
+        "Sottorete": "Meteo_idro_ARPAV",
+        "Colore": "ROSSO",
+        "Significato": "sensori non funzionanti o con ritardo dati >10 %",
+        "Percentuale_sensori_mancanti": 17.24
+    },
+    {
+        "Flusso": "SIRAV",
+        "Autorit\u00e0": "ARPAV",
+        "Sottorete": "Meteo_idro_CVN",
+        "Colore": "GIALLO",
+        "Significato": "sensori non funzionati o con ritardo dati <5 %",
+        "Percentuale_sensori_mancanti": 4.44
+    },
+    {
+        "Flusso": "SIRAV",
+        "Autorit\u00e0": "ARPAV",
+        "Sottorete": "Meteo_idro_DAO",
+        "Colore": "NERO",
+        "Significato": "Attenzione: file di riferimento con meno sensori di quello analizzato",
+        "Percentuale_sensori_mancanti": -21.05
+    },
+    {
+        "Flusso": "SIRAV",
+        "Autorit\u00e0": "ARPAV",
+        "Sottorete": "LEB",
+        "Colore": "ROSSO",
+        "Significato": "sensori non funzionanti o con ritardo dati >10 %",
+        "Percentuale_sensori_mancanti": 10.0
+    },
+    {
+        "Flusso": "SIRAV",
+        "Autorit\u00e0": "ARPAV",
+        "Sottorete": "Bac_Scolante",
+        "Colore": "ROSSO",
+        "Significato": "sensori non funzionanti o con ritardo dati >10 %",
+        "Percentuale_sensori_mancanti": 15.0
+    },
+    {
+        "Flusso": "SIRAV",
+        "Autorit\u00e0": "ARPAV",
+        "Sottorete": "Camuzzoni",
+        "Colore": "VERDE",
+        "Significato": "tutti i sensori funzionanti e senza ritardo dati",
+        "Percentuale_sensori_mancanti": 0.0
+    },
+    {
+        "Flusso": "SIRAV",
+        "Autorit\u00e0": "ARPAV",
+        "Sottorete": "ENEL",
+        "Colore": "ROSSO",
+        "Significato": "sensori non funzionanti o con ritardo dati >10 %",
+        "Percentuale_sensori_mancanti": 24.39
+    },
+    {
+        "Flusso": "SIRAV",
+        "Autorit\u00e0": "ARPAV",
+        "Sottorete": "Eusebio",
+        "Colore": "VERDE",
+        "Significato": "tutti i sensori funzionanti e senza ritardo dati",
+        "Percentuale_sensori_mancanti": 0.0
+    },
+    {
+        "Flusso": "SIRAV",
+        "Autorit\u00e0": "ARPAV",
+        "Sottorete": "Freat_ARPAV",
+        "Colore": "ROSSO",
+        "Significato": "sensori non funzionanti o con ritardo dati >10 %",
+        "Percentuale_sensori_mancanti": 94.28
+    },
+    {
+        "Flusso": "SIRAV",
+        "Autorit\u00e0": "ARPAV",
+        "Sottorete": "Infrast_Venete",
+        "Colore": "NERO",
+        "Significato": "Attenzione: file di riferimento con meno sensori di quello analizzato",
+        "Percentuale_sensori_mancanti": -4.76
+    }
+]
